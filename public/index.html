@@ -62,28 +62,31 @@
       </div>
     </section>
 
-    <section class="block" id="lien-he">
+    <section class="block contact-block" id="lien-he">
       <div class="wrap">
         <div class="contact">
           <div>
-            <h2>Cần một giải pháp tương tự?</h2>
-            <p class="sub" id="contact-intro">Để lại lời nhắn hoặc liên hệ trực tiếp – tôi sẽ phản hồi sớm nhất có thể.</p>
+            <h2>Liên hệ</h2>
+            <p class="sub" id="contact-intro">Cần một giải pháp tương tự? Liên hệ trực tiếp hoặc để lại lời nhắn.</p>
             <ul class="contact-list" id="contact-list"></ul>
           </div>
           <form class="form" id="contact-form" novalidate>
-            <label>Họ tên
-              <input class="input" name="name" maxlength="80" required placeholder="Nguyễn Văn A" />
-            </label>
-            <label>Email hoặc số điện thoại
-              <input class="input" name="contact" maxlength="120" required placeholder="ban@email.com / 09xx xxx xxx" />
-            </label>
-            <label>Nội dung
+            <h3>Gửi lời nhắn</h3>
+            <div class="form-row">
+              <label><span class="sr-only">Họ tên</span>
+                <input class="input" name="name" maxlength="80" required placeholder="Họ tên" />
+              </label>
+              <label><span class="sr-only">Email hoặc số điện thoại</span>
+                <input class="input" name="contact" maxlength="120" required placeholder="Email hoặc số điện thoại" />
+              </label>
+            </div>
+            <label><span class="sr-only">Nội dung</span>
               <textarea class="input" name="content" maxlength="2000" required placeholder="Bạn cần xây dựng gì?"></textarea>
             </label>
             <!-- bẫy bot: người thật không thấy ô này -->
             <input name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true" />
-            <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
-              <button class="btn btn-accent" type="submit">Gửi lời nhắn</button>
+            <div class="form-actions">
+              <button class="btn btn-accent btn-sm" type="submit" style="padding:9px 18px">Gửi</button>
               <p class="form-note" id="form-note" role="status"></p>
             </div>
           </form>

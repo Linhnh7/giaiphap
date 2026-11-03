@@ -107,7 +107,7 @@ function contactItems(c) {
   if (c.github) items.push(["github", "GitHub", c.github.replace(/^https?:\/\/(www\.)?/, ""), safeUrl(c.github)]);
   if (c.address) items.push(["address", "Địa chỉ", c.address, ""]);
   return items.map(([k, label, value, href]) => {
-    const inner = `${icon(k)}<span><small>${label}</small><b>${esc(value)}</b></span>`;
+    const inner = `${icon(k)}<span class="txt"><small>${label}</small><b>${esc(value)}</b></span>`;
     return `<li>${href ? `<a href="${esc(href)}" ${href.startsWith("http") ? 'target="_blank" rel="noopener"' : ""}>${inner}</a>` : `<div>${inner}</div>`}</li>`;
   }).join("");
 }
