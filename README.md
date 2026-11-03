@@ -39,7 +39,16 @@ firebase.json       cấu hình hosting
    - `public/js/firebase.js` → `ADMIN_EMAILS`
    - `firestore.rules` → hàm `isAdmin()`
 
-## Deploy
+## Deploy tự động (GitHub Actions)
+
+Mỗi lần push lên `main`, workflow `.github/workflows/deploy.yml` sẽ deploy Hosting + Firestore rules. Cài một lần:
+
+1. Firebase Console → ⚙️ Project settings → **Service accounts** → *Generate new private key* → tải file JSON.
+2. GitHub repo → **Settings → Secrets and variables → Actions** → *New repository secret*:
+   tên `FIREBASE_SERVICE_ACCOUNT`, giá trị = toàn bộ nội dung file JSON. Xoá file JSON khỏi máy sau khi dán.
+3. Tab **Actions** → *Deploy Firebase* → *Run workflow* (hoặc push bất kỳ thay đổi nào).
+
+## Deploy bằng tay
 
 ```bash
 npm install -g firebase-tools

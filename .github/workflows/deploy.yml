@@ -1,0 +1,35 @@
+name: Deploy Firebase
+
+# Tự deploy Hosting + Firestore rules mỗi khi push lên main (hoặc bấm chạy tay).
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: firebase-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Ghi khoá service account
+        env:
+          SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          if [ -z "$SA" ]; then
+            echo "::error::Chưa có secret FIREBASE_SERVICE_ACCOUNT – xem README mục Deploy tự động."
+            exit 1
+          fi
+          printf '%s' "$SA" > "$RUNNER_TEMP/sa.json"
+          echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/sa.json" >> "$GITHUB_ENV"
+
+      - name: Deploy
+        run: npx -y firebase-tools@latest deploy --project giaiphap-ba3e2 --only hosting,firestore:rules --non-interactive
