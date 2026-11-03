@@ -59,7 +59,7 @@ onAuthStateChanged(auth, (user) => {
   $("#userbox").hidden = !user;
   if (!user) return show("login");
 
-  $("#user-photo").src = user.photoURL || "/assets/logo.svg";
+  $("#user-photo").src = user.photoURL || "/assets/logo-mark.png";
   $("#user-name").textContent = user.displayName || user.email;
 
   const email = (user.email || "").toLowerCase();

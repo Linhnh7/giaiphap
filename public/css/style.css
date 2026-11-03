@@ -6,7 +6,7 @@
   --ink-2: #4A4F5C;
   --ink-3: #8A8F9B;
   --line: #DDD9CF;
-  --accent: #F05A28;
+  --accent: #E25C27;
   --accent-ink: #FFFFFF;
   --accent-soft: #FDE6DC;
   --ok: #1F9D6B;
@@ -57,7 +57,7 @@ button, input, textarea, select { font: inherit; color: inherit; }
 }
 .site-header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
 .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; letter-spacing: -.01em; }
-.brand img { width: 34px; height: 34px; }
+.brand img { width: 42px; height: 42px; object-fit: contain; }
 .brand small { display: block; font-weight: 500; color: var(--ink-3); font-size: 12px; line-height: 1; margin-top: 2px; }
 .nav { display: flex; gap: 6px; align-items: center; }
 .nav a { text-decoration: none; padding: 8px 12px; border-radius: 999px; color: var(--ink-2); font-size: 15px; }
