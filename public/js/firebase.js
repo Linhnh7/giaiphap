@@ -16,7 +16,7 @@ const firebaseConfig = {
 
 // Danh sách email Google được vào trang quản trị.
 // PHẢI khớp với danh sách trong firestore.rules (rules mới là lớp bảo vệ thật).
-export const ADMIN_EMAILS = ["linhnh7@f88.vn"];
+export const ADMIN_EMAILS = ["linhvcc01@gmail.com"];
 
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);

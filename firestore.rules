@@ -6,7 +6,7 @@ service cloud.firestore {
     function isAdmin() {
       return request.auth != null
         && request.auth.token.email_verified == true
-        && request.auth.token.email.lower() in ['linhnh7@f88.vn'];
+        && request.auth.token.email.lower() in ['linhvcc01@gmail.com'];
     }
 
     // Các web được giới thiệu: khách chỉ đọc được web đang bật hiển thị.
