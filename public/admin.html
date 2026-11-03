@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quản trị · GP Giải Pháp</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="/assets/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/">
+        <img src="/assets/logo.svg" alt="" />
+        <span>Giải Pháp<small>Trang quản trị</small></span>
+      </a>
+      <div class="userbox" id="userbox" hidden>
+        <img id="user-photo" alt="" referrerpolicy="no-referrer" />
+        <span id="user-name"></span>
+        <button class="btn btn-sm" id="btn-logout">Đăng xuất</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <div class="wrap">
+      <!-- Đang kiểm tra phiên -->
+      <div id="view-loading" class="loading">Đang tải…</div>
+
+      <!-- Đăng nhập -->
+      <div id="view-login" class="panel login-box" hidden>
+        <img src="/assets/logo.svg" alt="" />
+        <h1>Quản trị Giải Pháp</h1>
+        <p>Đăng nhập bằng tài khoản Google của quản trị viên.</p>
+        <button class="btn btn-primary" id="btn-login" style="width:100%">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="m10 17 5-5-5-5"/><path d="M15 12H3"/></svg>
+          Đăng nhập với Google
+        </button>
+        <p class="form-note err" id="login-err" style="margin-top:14px"></p>
+      </div>
+
+      <!-- Không có quyền -->
+      <div id="view-denied" class="panel login-box" hidden>
+        <h1>Không có quyền</h1>
+        <p>Tài khoản <b id="denied-email"></b> không nằm trong danh sách quản trị viên.</p>
+        <button class="btn" id="btn-logout-2">Đăng nhập tài khoản khác</button>
+      </div>
+
+      <!-- Bảng điều khiển -->
+      <div id="view-dash" hidden>
+        <div class="tabs" role="tablist">
+          <button class="tab" role="tab" data-tab="sites" aria-selected="true">Dự án <span class="count" id="count-sites">0</span></button>
+          <button class="tab" role="tab" data-tab="settings" aria-selected="false">Cài đặt &amp; liên hệ</button>
+          <button class="tab" role="tab" data-tab="messages" aria-selected="false">Tin nhắn <span class="count" id="count-msg">0</span></button>
+        </div>
+
+        <!-- Tab dự án -->
+        <section data-panel="sites">
+          <div class="toolbar">
+            <div>
+              <h2>Các web được giới thiệu</h2>
+              <span class="hint">Bật “Hiển thị” để web xuất hiện trên trang chủ. Dùng mũi tên để sắp thứ tự.</span>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <a class="btn" href="/" target="_blank">Xem trang chủ ↗</a>
+              <button class="btn btn-accent" id="btn-add">+ Thêm dự án</button>
+            </div>
+          </div>
+          <div class="rows" id="site-rows"></div>
+        </section>
+
+        <!-- Tab cài đặt -->
+        <section data-panel="settings" hidden>
+          <form class="panel form" id="settings-form" style="max-width:760px">
+            <div class="toolbar"><h2>Nội dung trang chủ</h2></div>
+            <label>Dòng nhỏ phía trên tiêu đề
+              <input class="input" name="heroEyebrow" maxlength="60" placeholder="Portfolio" />
+            </label>
+            <label>Tiêu đề lớn <span class="hint">– đặt chữ trong [ngoặc vuông] để tô màu cam</span>
+              <input class="input" name="heroTitle" maxlength="120" placeholder="Biến ý tưởng thành [giải pháp] chạy thật." />
+            </label>
+            <label>Mô tả ngắn
+              <textarea class="input" name="heroSub" maxlength="400" style="min-height:80px"></textarea>
+            </label>
+
+            <div class="toolbar" style="margin-top:16px"><h2>Thông tin liên hệ (cuối trang)</h2></div>
+            <label>Lời mời liên hệ
+              <input class="input" name="contactIntro" maxlength="200" placeholder="Để lại lời nhắn hoặc liên hệ trực tiếp…" />
+            </label>
+            <div class="grid-2">
+              <label>Email <input class="input" name="email" type="email" maxlength="120" /></label>
+              <label>Điện thoại <input class="input" name="phone" maxlength="30" /></label>
+              <label>Zalo (số điện thoại) <input class="input" name="zalo" maxlength="30" /></label>
+              <label>Facebook (link) <input class="input" name="facebook" type="url" maxlength="200" placeholder="https://facebook.com/…" /></label>
+              <label>GitHub (link) <input class="input" name="github" type="url" maxlength="200" placeholder="https://github.com/…" /></label>
+              <label>Địa chỉ <input class="input" name="address" maxlength="160" /></label>
+            </div>
+            <span class="hint">Ô nào để trống sẽ không hiện ở trang chủ.</span>
+            <div><button class="btn btn-primary" type="submit">Lưu cài đặt</button></div>
+          </form>
+        </section>
+
+        <!-- Tab tin nhắn -->
+        <section data-panel="messages" hidden>
+          <div class="toolbar"><h2>Tin nhắn từ form liên hệ</h2></div>
+          <div class="rows" id="msg-rows"></div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- Hộp thoại thêm / sửa dự án -->
+  <dialog id="site-dialog">
+    <form class="form" id="site-form" method="dialog">
+      <h3 id="site-dialog-title">Thêm dự án</h3>
+      <label>Tên dự án *
+        <input class="input" name="title" required maxlength="80" placeholder="Bot Zalo Manager" />
+      </label>
+      <label>Đường dẫn web *
+        <input class="input" name="url" type="url" required maxlength="300" placeholder="https://botzlmanager.vercel.app/" />
+      </label>
+      <label>Mô tả ngắn
+        <textarea class="input" name="description" maxlength="400" style="min-height:80px" placeholder="Web làm gì, cho ai, điểm nổi bật…"></textarea>
+      </label>
+      <label>Ảnh minh hoạ (link ảnh) <span class="hint">– bỏ trống sẽ dùng ảnh màu tự động</span>
+        <div style="display:flex;gap:8px">
+          <input class="input" name="image" type="url" maxlength="500" placeholder="https://…/screenshot.png" />
+          <button class="btn btn-sm" type="button" id="btn-autoshot" title="Dùng dịch vụ chụp màn hình tự động từ đường dẫn web">Chụp tự động</button>
+        </div>
+      </label>
+      <label>Thẻ <span class="hint">– cách nhau bằng dấu phẩy, ví dụ: Zalo, Bot, Quản lý</span>
+        <input class="input" name="tags" maxlength="200" />
+      </label>
+      <div class="checks">
+        <label class="switch"><input type="checkbox" name="visible" checked /><span class="track"></span>Hiển thị trên trang chủ</label>
+        <label class="switch"><input type="checkbox" name="featured" /><span class="track"></span>Nổi bật (thẻ to)</label>
+      </div>
+      <div class="dialog-actions">
+        <button class="btn" type="button" id="btn-cancel">Huỷ</button>
+        <button class="btn btn-primary" type="submit" id="btn-save">Lưu</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script type="module" src="/js/admin.js"></script>
+</body>
+</html>

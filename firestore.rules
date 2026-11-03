@@ -1,0 +1,35 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Email Google của quản trị viên – nhớ sửa giống ADMIN_EMAILS trong public/js/firebase.js
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email_verified == true
+        && request.auth.token.email.lower() in ['linhnh7@f88.vn'];
+    }
+
+    // Các web được giới thiệu: khách chỉ đọc được web đang bật hiển thị.
+    match /sites/{id} {
+      allow read: if resource.data.visible == true || isAdmin();
+      allow write: if isAdmin();
+    }
+
+    // Nội dung trang chủ + thông tin liên hệ: ai cũng đọc, chỉ admin sửa.
+    match /settings/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Tin nhắn liên hệ: khách chỉ được tạo mới (có kiểm tra dữ liệu), admin đọc/xoá.
+    match /messages/{id} {
+      allow create: if request.resource.data.keys().hasOnly(['name', 'contact', 'content', 'read', 'createdAt'])
+        && request.resource.data.name is string && request.resource.data.name.size() > 0 && request.resource.data.name.size() <= 80
+        && request.resource.data.contact is string && request.resource.data.contact.size() > 0 && request.resource.data.contact.size() <= 120
+        && request.resource.data.content is string && request.resource.data.content.size() > 0 && request.resource.data.content.size() <= 2000
+        && request.resource.data.read == false
+        && request.resource.data.createdAt == request.time;
+      allow read, update, delete: if isAdmin();
+    }
+  }
+}

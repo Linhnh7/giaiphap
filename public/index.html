@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GP · Giải Pháp – Các sản phẩm web đã thực hiện</title>
+  <meta name="description" content="Tuyển tập các sản phẩm web do GP – Giải Pháp xây dựng. Xem dự án và liên hệ hợp tác." />
+  <meta property="og:title" content="GP · Giải Pháp" />
+  <meta property="og:description" content="Tuyển tập các sản phẩm web đã thực hiện." />
+  <meta property="og:image" content="/assets/logo.svg" />
+  <meta name="theme-color" content="#14171F" />
+  <link rel="icon" href="/assets/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/">
+        <img src="/assets/logo.svg" alt="" />
+        <span>Giải Pháp<small>Web · App · Automation</small></span>
+      </a>
+      <nav class="nav">
+        <a href="#du-an">Dự án</a>
+        <a href="#lien-he">Liên hệ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="eyebrow" id="hero-eyebrow">Portfolio</div>
+        <h1 id="hero-title">Biến ý tưởng thành <em>giải pháp</em> chạy thật.</h1>
+        <p class="lead" id="hero-sub">Tuyển tập những sản phẩm web tôi đã xây dựng – từ công cụ quản lý nội bộ đến bot tự động hoá. Bấm vào từng dự án để trải nghiệm trực tiếp.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#du-an">Xem dự án</a>
+          <a class="btn" href="#lien-he">Liên hệ hợp tác</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><b id="stat-count">–</b><span>Dự án đang giới thiệu</span></div>
+          <div class="stat"><b id="stat-tags">–</b><span>Lĩnh vực / công nghệ</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="du-an">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Dự án nổi bật</h2>
+            <p>Các sản phẩm đang hoạt động, mở được ngay trên trình duyệt.</p>
+          </div>
+          <div class="chips" id="filters" role="group" aria-label="Lọc theo thẻ"></div>
+        </div>
+        <div class="grid" id="grid">
+          <div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="lien-he">
+      <div class="wrap">
+        <div class="contact">
+          <div>
+            <h2>Cần một giải pháp tương tự?</h2>
+            <p class="sub" id="contact-intro">Để lại lời nhắn hoặc liên hệ trực tiếp – tôi sẽ phản hồi sớm nhất có thể.</p>
+            <ul class="contact-list" id="contact-list"></ul>
+          </div>
+          <form class="form" id="contact-form" novalidate>
+            <label>Họ tên
+              <input class="input" name="name" maxlength="80" required placeholder="Nguyễn Văn A" />
+            </label>
+            <label>Email hoặc số điện thoại
+              <input class="input" name="contact" maxlength="120" required placeholder="ban@email.com / 09xx xxx xxx" />
+            </label>
+            <label>Nội dung
+              <textarea class="input" name="content" maxlength="2000" required placeholder="Bạn cần xây dựng gì?"></textarea>
+            </label>
+            <!-- bẫy bot: người thật không thấy ô này -->
+            <input name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true" />
+            <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+              <button class="btn btn-accent" type="submit">Gửi lời nhắn</button>
+              <p class="form-note" id="form-note" role="status"></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© <span id="year"></span> GP · Giải Pháp</span>
+      <a href="/admin.html">Quản trị</a>
+    </div>
+  </footer>
+
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>
